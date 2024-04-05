@@ -9,7 +9,7 @@ class AwardsService {
       let query = {};
 
       if (winner) {
-        query.winner = winner === 'true';
+        query.winner = winner === 'true' ? 'yes' : '';
       }
 
       if (year) {
@@ -44,7 +44,7 @@ class AwardsService {
     try {
 
       const data = await new Promise((resolve, reject) => {
-        database.db.find({ year, winner: true })
+        database.db.find({ year, winner: 'yes' })
           .exec((err, docs) => {
             if (err) {
               reject(err);
@@ -106,13 +106,14 @@ class AwardsService {
       const studioCounts = {};
 
       winners.forEach((winner) => {
-        const studios = winner.studios.split(',').map(s => s.trim());
-        studios.forEach((studio) => {
+        const studios = winner?.studios?.split(',').map(s => s.trim());
+        studios?.forEach((studio) => {
           studioCounts[studio] = (studioCounts[studio] || 0) + 1;
         });
       });
 
       const sortedStudios = Object.keys(studioCounts).sort((a, b) => studioCounts[b] - studioCounts[a]);
+
 
       return sortedStudios.slice(0, 3).map(studio => ({ studio, winCount: studioCounts[studio] }));
     } catch (error) {
@@ -124,32 +125,40 @@ class AwardsService {
     try {
       const winners = await this.getTotalWinners();
 
-      winners.sort((a, b) => a.year - b.year);
-
-      let minProducer = { interval: Infinity };
-      let maxProducer = { interval: -Infinity };
+      let minInterval = [];
+      let maxInterval = [];
 
       for (let i = 1; i < winners.length; i++) {
-        const interval = winners[i].year - winners[i - 1].year;
-        if (interval < minProducer.interval) {
-          minProducer = {
-            producer: winners[i].producers,
-            interval: interval,
-            previousWin: winners[i - 1].year,
-            followingWin: winners[i].year
-          };
+        const filmsWithSameProducer = winners.filter(winner => winner?.producers.includes(winners[i].producers));
+        const sortedFilms = filmsWithSameProducer.sort((a, b) => a.year - b.year);
+
+        const firstFilm = sortedFilms[0];
+        const lastFilm = sortedFilms[sortedFilms.length - 1];
+
+        const interval = lastFilm?.year - firstFilm.year;
+
+        if (interval === 0) continue;
+
+        if (maxInterval.length === 0 || interval > maxInterval[0].interval) {
+          maxInterval = [{
+            producer: firstFilm?.producers,
+            interval,
+            previousWin: firstFilm?.year,
+            followingWin: lastFilm?.year,
+          }];
         }
-        if (interval > maxProducer.interval) {
-          maxProducer = {
-            producer: winners[i].producers,
+
+        if (minInterval.length === 0 || interval < minInterval[0].interval) {
+          minInterval = [{
+            producer: firstFilm?.producers,
             interval: interval,
-            previousWin: winners[i - 1].year,
-            followingWin: winners[i].year
-          };
+            previousWin: firstFilm?.year,
+            followingWin: lastFilm?.year
+          }];
         }
       }
 
-      return { min: [minProducer], max: [maxProducer] }
+      return { min: minInterval, max: maxInterval }
     } catch (error) {
       throw error;
     }
@@ -157,7 +166,7 @@ class AwardsService {
 
   async getTotalWinners() {
     return await new Promise((resolve, reject) => {
-      database.db.find({ winner: true }, (err, docs) => {
+      database.db.find({ winner: 'yes' }, (err, docs) => {
         if (err) {
           reject(err);
         } else {

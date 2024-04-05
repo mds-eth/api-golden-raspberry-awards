@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-import csv from 'csv-parser';
 import Datastore from 'nedb';
+import readCSVFile from '../utils/Utils';
 
 class DatabaseMemory {
 
@@ -22,25 +22,14 @@ class DatabaseMemory {
 
       this.db = new Datastore();
 
-      let i = 0;
-      fs.createReadStream(csvFilePath)
-        .pipe(csv({ separator: ';' }))
-        .on('data', (row) => {
-          this.totalElements++;
-          const data = {
-            year: row.year,
-            title: row.title,
-            studios: row.studios,
-            producers: row.producers,
-            winner: row.winner === 'yes' ? true : false
-          };
+      const dataFilms = await readCSVFile(csvFilePath);
 
-          this.db.insert(data);
-        })
-        .on('end', () => {
-          console.log(`Arquivo CSV lido com sucesso. Foram inseridos: ${this.totalElements} registros no NeDB.`);
-        });
+      this.db.insert(dataFilms);
+
+      console.log(`Arquivo CSV lido com sucesso. Foram inseridos: ${dataFilms.length} registros no NeDB.`);
+
       console.log('\x1b[32mConectado ao banco de dados NeDB\x1b[0m');
+
     } catch (error) {
       console.error('\x1b[31mErro ao conectar ao banco de dados NeDB\x1b[0m', error);
     }

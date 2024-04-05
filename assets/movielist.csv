@@ -1,9 +1,9 @@
 year;title;studios;producers;winner
 1980;Can't Stop the Music;Associated Film Distribution;Allan Carr;yes
-1980;Cruising;Lorimar Productions, United Artists;Jerry Weintraub;yes
-1980;The Formula;MGM, United Artists;Steve Shagan;yes
-1980;Friday the 13th;Paramount Pictures;Sean S. Cunningham;yes
-1980;The Nude Bomb;Universal Studios;Jennings Lang;yes
+1980;Cruising;Lorimar Productions, United Artists;Jerry Weintraub;
+1980;The Formula;MGM, United Artists;Steve Shagan;
+1980;Friday the 13th;Paramount Pictures;Sean S. Cunningham;
+1980;The Nude Bomb;Universal Studios;Jennings Lang;
 1980;The Jazz Singer;Associated Film Distribution;Jerry Leider;
 1980;Raise the Titanic;Associated Film Distribution;William Frye;
 1980;Saturn 3;Associated Film Distribution;Stanley Donen;
@@ -23,10 +23,9 @@ year;title;studios;producers;winner
 1983;Hercules;MGM, United Artists, Cannon Films;Yoram Globus and Menahem Golan;
 1983;Jaws 3-D;Universal Studios;Rupert Hitzig;
 1983;Stroker Ace;Warner Bros., Universal Studios;Hank Moonjean;
-1983;Stroker Ace;Warner Bros., Universal Studios;Hank Moonjean;yes
 1983;Two of a Kind;20th Century Fox;Roger M. Rothstein and Joe Wizan;
 1984;Bolero;Cannon Films;Bo Derek;yes
-1984;Cannonball Run II;Warner Bros.;Albert S. Ruddy;yes
+1984;Cannonball Run II;Warner Bros.;Albert S. Ruddy;
 1984;Rhinestone;20th Century Fox;Marvin Worth and Howard Smith;
 1984;Sheena;Columbia Pictures;Paul Aratow;
 1984;Where the Boys Are '84;TriStar Pictures;Allan Carr;
@@ -46,7 +45,7 @@ year;title;studios;producers;winner
 1987;Tough Guys Don't Dance;Cannon Films;Yoram Globus and Menahem Golan;
 1987;Who's That Girl;Warner Bros.;Rosilyn Heller and Bernard Williams;
 1988;Cocktail;Touchstone Pictures;Ted Field and Robert W. Cort;yes
-1988;Caddyshack II;Warner Bros.;Neil Canton, Jon Peters and Peter Guber;yes
+1988;Caddyshack II;Warner Bros.;Neil Canton, Jon Peters and Peter Guber;
 1988;Hot to Trot;Warner Bros.;Steve Tisch;
 1988;Mac and Me;Orion Pictures;R. J. Louis;
 1988;Rambo III;TriStar Pictures, Carolco Pictures;Buzz Feitshans;
@@ -183,8 +182,8 @@ year;title;studios;producers;winner
 2015;Fantastic Four;20th Century Fox;Simon Kinberg, Matthew Vaughn, Hutch Parker, Robert Kulzer and Gregory Goodman;yes
 2015;Fifty Shades of Grey;Universal Pictures, Focus Features;Michael De Luca, Dana Brunetti and E. L. James;yes
 2015;Jupiter Ascending;Warner Bros.;Grant Hill and The Wachowskis;
-2015;Paul Blart: Mall Cop 2;Columbia Pictures;Todd Garner, Kevin James and Adam Sandler;yes
-2015;Pixels;Columbia Pictures;Adam Sandler, Chris Columbus, Mark Radcliffe and Allen Covert;yes
+2015;Paul Blart: Mall Cop 2;Columbia Pictures;Todd Garner, Kevin James and Adam Sandler;
+2015;Pixels;Columbia Pictures;Adam Sandler, Chris Columbus, Mark Radcliffe and Allen Covert;
 2016;Hillary's America: The Secret History of the Democratic Party;Quality Flix;Gerald R. Molen;yes
 2016;Batman v Superman: Dawn of Justice;Warner Bros.;Charles Roven and Deborah Snyder;
 2016;Dirty Grandpa;Lionsgate;Bill Block, Michael Simkin, Jason Barrett and Barry Josephson;
